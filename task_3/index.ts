@@ -45,3 +45,20 @@ const BALLONS: { [key: string]: BallonI } = {
 };
 
 // Ваш код здесь
+
+async function getBallsAmount() {
+  let total = 0;
+
+  for (const key in BALLONS) {
+    const ballon = BALLONS[key];
+
+    if (ballon.isPublic) {
+      const amount = await fetchBallonAmount(ballon.id);
+      total += amount;
+    }
+  }
+
+  console.log('Всего шариков:', total);
+}
+
+getBallsAmount();
